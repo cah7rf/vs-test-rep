@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
-using System.Collections;
 using System.Diagnostics;
-using System.Threading;
 
 namespace CutFillBalanceCH.Model
 {
@@ -18,8 +13,8 @@ namespace CutFillBalanceCH.Model
             Stopwatch sw = new Stopwatch();
 
             double minDistance = 1e30;
-            int closestCut = new int();
-            int closestFill = new int();
+            InputLine closestCut = new InputLine();
+            InputLine closestFill = new InputLine();
 
             sw.Start();
             KDTree.KDTree<InputLine> cutTree = new KDTree.KDTree<InputLine>(3);
@@ -28,7 +23,7 @@ namespace CutFillBalanceCH.Model
                 cutTree.AddPoint(new double[] { cuts[i].X, cuts[i].Y, cuts[i].Z }, cuts[i]);
             }
             sw.Stop();
-            Console.WriteLine("Tree Created in {0:0.00} milliseconds", sw.ElapsedMilliseconds);
+            //Console.WriteLine("Tree Created in {0:0.00} milliseconds", sw.ElapsedMilliseconds);
 
 
             sw.Reset();
@@ -46,21 +41,29 @@ namespace CutFillBalanceCH.Model
                     if (currentDistance < minDistance)
                     {
                         minDistance = currentDistance;
-                        closestCut = pCurrent.PID;
-                        closestFill = fills[j].PID;
+                        closestCut = pCurrent;
+                        closestFill = fills[j];
 
                     }
                 }
             }
 
-            //cuts.Remove(new InputLine().Add(string.Format("{0},1,1,1,1",closestCut)));
+            if (closestCut.TotalVolume>closestFill.TotalVolume)
+            {
+                fills.Remove(closestFill);
+            }
+            else
+            {
+                cuts.Remove(closestCut);
+            }
+            
 
             sw.Stop();
-            Console.WriteLine("Nearest Neighbor Found in {0:0.00} milliseconds", sw.ElapsedMilliseconds);
+            //Console.WriteLine("Nearest Neighbor Found in {0:0.00} milliseconds", sw.ElapsedMilliseconds);
 
 
-            Console.WriteLine("Closet Points are {0} units appart", Math.Sqrt(minDistance));
-            Console.WriteLine("Closet Points Cut:{0}, Fill:{1}", closestCut, closestFill);
+            //Console.WriteLine("Closet Points are {0} units appart", Math.Sqrt(minDistance));
+            //Console.WriteLine("Closet Points Cut:{0}, Fill:{1}", closestCut, closestFill);
         }
         
         

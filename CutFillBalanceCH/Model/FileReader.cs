@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
-using CutFillBalanceCH.Model;
 
 namespace CutFillBalanceCH.Model
 {
-   public class FileReader
+    public class FileReader
     {
   
        public IList<InputLine> ReadInputData(string filepath)

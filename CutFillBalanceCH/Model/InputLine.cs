@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CutFillBalanceCH.Model
 {
@@ -45,16 +40,12 @@ namespace CutFillBalanceCH.Model
         }
         public void Add(string fileLine)
         {
-            String[] values = fileLine.Split(',');
-            this.PID = Int32.Parse(values[0]);
-            this.TotalVolume = Convert.ToDouble(values[1]);
-            this.X = Convert.ToDouble(values[2]);
-            this.Y = Convert.ToDouble(values[3]);
-            this.Z = Convert.ToDouble(values[4]);
+
+            this.Add(fileLine, ',');
 
         }
 
-        public void Add(string fileLine, char[] fileDelimiter)
+        public void Add(string fileLine, char fileDelimiter)
         {
             String[] values = fileLine.Split(fileDelimiter);
             this.PID = Int32.Parse(values[0]);

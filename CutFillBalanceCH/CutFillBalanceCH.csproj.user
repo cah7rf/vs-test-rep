@@ -2,6 +2,6 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartArguments>-c cut_data.csv -f fill_data.csv</StartArguments>
-    <StartWorkingDirectory>C:\Users\choyt\Documents\Visual Studio 2013\Projects\CutFillBalanceCH\TestData\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\choyt\Source\Repos\vs-test-rep\TestData\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
